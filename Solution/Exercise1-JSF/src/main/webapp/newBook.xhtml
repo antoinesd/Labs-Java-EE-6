@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:demo="http://java.sun.com/jsf/composite/components">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">Create a new book</ui:define>
+
+        <ui:define name="content">
+
+            <h:form style="background-image:url(#{resource['book.png']});">
+                <demo:newItem item="#{itemBean.book}"/>
+
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Number of pages : " styleClass="alabel" />
+                    <h:inputText value="#{itemBean.book.nbOfPage}" styleClass="ainput"/>
+
+                    <h:outputLabel value="Illustrations : " styleClass="alabel"/>
+                    <h:selectBooleanCheckbox value="#{itemBean.book.illustrations}"/>
+
+                    <h:outputLabel value="Tags : " styleClass="alabel"/>
+                    <h:inputText value="#{itemBean.tags}" styleClass="ainput"/>
+
+                    <h:outputLabel value="Language code : " styleClass="alabel"/>
+                    <h:inputText value="#{itemBean.languageCode}" styleClass="ainput"/>
+                </h:panelGrid>
+
+                <h:commandButton value="Create a book" action="#{itemBean.doCreateBook}"/>
+
+            </h:form>
+
+            <hr/>
+            <h1>List of books</h1>
+
+            <h:form>
+                <h:outputLabel value="Filter: " styleClass="alabel"/>
+                <h:inputText value="#{itemBean.queryFilter}" styleClass="ainput" >
+                    <f:ajax event="keyup" execute="@this" render=":booklist"/>
+                </h:inputText>
+            </h:form>
+
+            <h:dataTable value="#{itemBean.bookList}" id="booklist" var="bk"
+                         border="1" rowClasses="evenRow, oddRow">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.isbn}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.title}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.price}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Language"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.contentLanguage}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.description}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Number Of Pages"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.nbOfPage}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Illustrations"/>
+                    </f:facet>
+                    <h:selectBooleanCheckbox value="#{bk.illustrations}" disabled="true"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tags"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.tagsAsString}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+
+    </ui:composition>
+</html>
