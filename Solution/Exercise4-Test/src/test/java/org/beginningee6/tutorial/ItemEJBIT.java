@@ -25,10 +25,8 @@ public class ItemEJBIT {
                          .addAsManifestResource("glassfish-resources.xml");
     }
     
-    @EJB
-    ItemEJB itemEJB;
-    @EJB
-    DBInit dBInit;
+    @EJB ItemEJB itemEJB;
+    @EJB DBInit dBInit;
     
     @Test
     public void shouldGetBookSimplyReturnFoundBook() throws Exception {

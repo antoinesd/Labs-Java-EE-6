@@ -3,11 +3,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-  <container qualifier="glassfish-embedded" default="true">
-    <configuration>
-      <property name="sunResourcesXml">src/test/resources/glassfish-resources.xml</property>
-      <property name="bindHttpPort">9999</property>
-    </configuration>
-  </container>
+    <engine>
+        <property name="deploymentExportPath">target</property>
+    </engine>
+
+    <container qualifier="glassfish-embedded" default="true">
+        <configuration>
+            <property name="sunResourcesXml">src/test/resources/glassfish-resources.xml</property>
+            <property name="bindHttpPort">9999</property>
+        </configuration>
+    </container>
 
 </arquillian>

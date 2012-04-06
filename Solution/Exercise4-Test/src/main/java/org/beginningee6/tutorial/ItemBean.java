@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import javax.ejb.EJB;
 import javax.enterprise.context.ConversationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,7 +22,6 @@ import javax.inject.Named;
  *         A CDI (Web)Bean used as a controller by the JSF view
  */
 @Named("controller")
-@ManagedBean
 @ConversationScoped
 public class ItemBean implements Serializable {
 
