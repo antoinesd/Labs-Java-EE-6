@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,7 +33,7 @@ public class ItemEJB {
     @PersistenceContext
     private EntityManager em;
 
-    @Resource
+    @Inject
     private IsbnGenerator isbnGenerator;
 
     // ======================================

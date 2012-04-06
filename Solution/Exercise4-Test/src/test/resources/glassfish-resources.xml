@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+ 
+<resources>
+    <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource" res-type="javax.sql.DataSource" name="SamplePool">
+        <property name="DatabaseName" value="sample"></property>
+        <property name="User" value="app"></property>
+        <property name="Password" value="app"></property>
+        <property name="URL" value="jdbc:derby://localhost:1527/sample"></property>
+        <property name="PortNumber" value="1527"></property>
+        <property name="serverName" value="localhost"></property>
+    </jdbc-connection-pool>
+    <jdbc-resource pool-name="SamplePool" jndi-name="jdbc/sample"></jdbc-resource>
+</resources>

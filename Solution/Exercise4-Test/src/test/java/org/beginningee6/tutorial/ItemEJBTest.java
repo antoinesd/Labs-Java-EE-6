@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.beginningee6.tutorial;
 
 import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.Query;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -17,8 +12,7 @@ import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 
 /**
- *
- * @author alexis
+ * @author Alexis Hassler
  */
 public class ItemEJBTest {
     

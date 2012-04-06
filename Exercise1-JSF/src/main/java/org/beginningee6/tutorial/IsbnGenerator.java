@@ -23,14 +23,14 @@ public class IsbnGenerator {
 
     @PostConstruct
     private void init() {
-        System.out.println("\n=> PostConstruct");
+        System.out.println("\n=> IsbnGenerator PostConstruct");
         System.out.println("================");
     }
 
     @PreDestroy
     private void release() {
         System.out.println("=============");
-        System.out.println("=> PreDestroy");
+        System.out.println("=> IsbnGenerator PreDestroy");
     }
 
     // ======================================
