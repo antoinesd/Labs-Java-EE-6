@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC"),
-        @NamedQuery(name = "findAllScifiBooks", query = "SELECT b FROM Book b WHERE b.tags = 'scifi' ORDER BY b.id DESC")
+        @NamedQuery(name = "findAllScifiBooks", query = "SELECT b FROM Book b JOIN b.tags t WHERE t = 'scifi' ORDER BY b.id DESC")
 })
 public class Book extends Item {
 
@@ -27,7 +27,7 @@ public class Book extends Item {
     private Boolean illustrations;
     private String contentLanguage;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "tags")
     private List<String> tags = new ArrayList<String>();
 

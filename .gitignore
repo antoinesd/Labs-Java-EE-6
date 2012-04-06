@@ -1,5 +1,11 @@
+# Eclipse
 .settings
 .project
 .classpath
+# Maven
 target
+# Netbeans
 nbactions.xml
+# IntelliJ
+*.iml
+.idea

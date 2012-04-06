@@ -9,7 +9,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.weld.context.bound.BoundConversationContext;
 import org.jboss.weld.context.bound.MutableBoundRequest;
 import org.junit.*;

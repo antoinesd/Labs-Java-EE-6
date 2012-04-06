@@ -20,9 +20,8 @@ public class ItemEJBIT {
     public static JavaArchive deploy() {
         return ShrinkWrap.create(JavaArchive.class)
                          .addPackage(ItemEJB.class.getPackage())
-                         .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                         .addAsManifestResource("META-INF/beans.xml", "beans.xml")
-                         .addAsManifestResource("glassfish-resources.xml");
+                         .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+                         .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     @EJB ItemEJB itemEJB;
