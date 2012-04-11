@@ -27,6 +27,8 @@
 
                     <h:outputLabel value="Language code : " styleClass="alabel"/>
                     <h:inputText value="#{itemBean.languageCode}" styleClass="ainput"/>
+                    <h:outputLabel value="*" styleClass="alabel"/>
+                    <h:outputLabel value="#{languages.listOfValues}" styleClass="ainput"/>
                 </h:panelGrid>
 
                 <!-- need a button to validate the form -->
@@ -107,6 +109,19 @@
                         <h:outputText value="Tags"/>
                     </f:facet>
                     <h:outputText value="#{bk.tagsAsString}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Purchase"/>
+                    </f:facet>
+                    <h:form>
+                        <h:commandButton actionListener="#{itemBean.doBuy}"
+                                         disabled="#{itemBean.forbiddenToBuy}"
+                                         value="#{itemBean.buyButtonLabel}">
+                            <f:attribute name="isbn" value="#{bk.isbn}"/>
+                        </h:commandButton>
+                    </h:form>
                 </h:column>
             </h:dataTable>
         </ui:define>

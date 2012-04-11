@@ -1,13 +1,16 @@
 package org.beginningee6.tutorial;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -17,18 +20,23 @@ import java.util.StringTokenizer;
  *         --
  *         A JSF Managed Bean
  */
-@ManagedBean
+@Named("itemBean")
 @RequestScoped
-public class ItemBean {
+public class ItemBean implements Serializable {
 
     // ======================================
     // =             Attributes             =
     // ======================================
+    @Inject
+    private transient Logger logger;    
 
-    @EJB
+    @Inject @Premium
+    private Customer cust;
+    
+    @Inject
     private ItemEJB itemEJB;
 
-    @EJB
+    @Inject
     private LanguageSingleton languageSingleton;
 
     private Book book = new Book();
@@ -47,6 +55,7 @@ public class ItemBean {
 
     @PostConstruct
     private void initList() {
+        logger.warning("INIT");
         bookList = itemEJB.findAllBooks();
         cdList = itemEJB.findAllCDs();
     }
@@ -76,6 +85,22 @@ public class ItemBean {
         cdList = itemEJB.findAllCDs();
         return "newCD.xhtml";
     }
+
+        public Boolean getForbiddenToBuy() {
+        return cust.canBuy() ? Boolean.FALSE : Boolean.TRUE;
+    }
+
+    public String getBuyButtonLabel() {
+        return cust.canBuy() ? "Buy me!" : "Sorry, can't buy";
+    }
+
+    public String doBuy(ActionEvent event) {
+        String isbn = (String) event.getComponent().getAttributes().get("isbn");
+        OrderItem orderItem = cust.buy(isbn); // Will only proceed for @Premium customers
+        System.out.println("** Just bought : " + orderItem);
+        return null;    // Stay on the same page
+    }
+    
 
     // ======================================
     // =           Private methods          =

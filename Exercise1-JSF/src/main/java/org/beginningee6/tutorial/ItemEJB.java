@@ -1,11 +1,13 @@
 package org.beginningee6.tutorial;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.logging.Logger;
+import javax.enterprise.inject.spi.InjectionPoint;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,8 +34,11 @@ public class ItemEJB {
     @PersistenceContext
     private EntityManager em;
 
-    @Resource
+    @Inject
     private IsbnGenerator isbnGenerator;
+
+    @Inject
+    private Logger logger;    
 
     // ======================================
     // =          Business methods          =
@@ -48,6 +53,7 @@ public class ItemEJB {
     }
 
     public Book createBook(Book book) {
+        logger.info("Creation : " + book);
         book.setIsbn(isbnGenerator.generateIsbn());
         em.persist(book);
         return book;

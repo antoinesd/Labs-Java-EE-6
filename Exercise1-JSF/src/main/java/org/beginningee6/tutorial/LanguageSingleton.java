@@ -6,6 +6,7 @@ import javax.ejb.Startup;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+import javax.inject.Named;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
  */
 @Startup
 @Singleton
+@Named("languages")
 public class LanguageSingleton {
 
     // ======================================
@@ -50,5 +52,9 @@ public class LanguageSingleton {
 
     public String getLanguageValue(String code) {
         return languages.containsKey(code.toUpperCase()) ? languages.get(code.toUpperCase()) : "UNKNOWN";
+    }
+    
+    public String getListOfValues() {
+        return languages.keySet().toString();
     }
 }
