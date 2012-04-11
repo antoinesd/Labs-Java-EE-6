@@ -10,14 +10,14 @@ import javax.annotation.Resource;
 import javax.ejb.Singleton;
 
 import javax.ejb.Startup;
+import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 /**
  *
  * @author Alexis Hassler
  */
-@Startup
-@Singleton
+@Stateless
 public class DBInit {
     public static final int NUM_BOOKS = 3;
     public static final int NUM_CDS = 1;

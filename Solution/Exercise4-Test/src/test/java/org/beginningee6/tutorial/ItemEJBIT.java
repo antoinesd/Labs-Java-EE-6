@@ -26,6 +26,11 @@ public class ItemEJBIT {
     
     @EJB ItemEJB itemEJB;
     @EJB DBInit dBInit;
+
+    @Before
+    public void initData() {
+        dBInit.initDatabase();
+    }
     
     @Test
     public void shouldGetBookSimplyReturnFoundBook() throws Exception {
