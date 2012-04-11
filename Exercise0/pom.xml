@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.beginningee6.tutorial</groupId>
-    <artifactId>Exercise</artifactId>
+    <artifactId>Exercise1-JSF</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Exercise</name>
+    <name>Exercise1 - JSF</name>
 
     <parent>
         <groupId>org.beginningee6.tutorial</groupId>
@@ -32,7 +32,7 @@
     </dependencies>
 
     <build>
-        <finalName>exercise</finalName>
+        <finalName>exercise1</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -44,7 +44,4 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-    </properties>
 </project>

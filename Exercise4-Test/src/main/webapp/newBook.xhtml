@@ -11,40 +11,31 @@
         <ui:define name="title">Create a new book</ui:define>
 
         <ui:define name="content">
-
             <h:form style="background-image:url(#{resource['book.png']});">
-                <demo:newItem item="#{itemBean.book}"/>
+                <demo:newItem item="#{controller.book}"/>
 
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Number of pages : " styleClass="alabel" />
-                    <h:inputText value="#{itemBean.book.nbOfPage}" styleClass="ainput"/>
+                    <h:inputText value="#{controller.book.nbOfPage}" styleClass="ainput"/>
 
                     <h:outputLabel value="Illustrations : " styleClass="alabel"/>
-                    <h:selectBooleanCheckbox value="#{itemBean.book.illustrations}"/>
+                    <h:selectBooleanCheckbox value="#{controller.book.illustrations}"/>
 
                     <h:outputLabel value="Tags : " styleClass="alabel"/>
-                    <h:inputText value="#{itemBean.tags}" styleClass="ainput"/>
+                    <h:inputText value="#{controller.tags}" styleClass="ainput"/>
 
-                    <h:outputLabel value="Language code : " styleClass="alabel"/>
-                    <h:inputText value="#{itemBean.languageCode}" styleClass="ainput"/>
+                    <h:outputLabel value="Language code *: " styleClass="alabel"/>
+                    <h:inputText value="#{controller.languageCode}" styleClass="ainput"/>
                 </h:panelGrid>
-
-                <!-- need a button to validate the form -->
-                <h:commandButton value="Create a book" action="#{itemBean.doCreateBook}"/>
+                
+                <h:commandButton value="Create a book" action="#{controller.doCreateBook}"/>
 
             </h:form>
 
             <hr/>
             <h1>List of books</h1>
-
-            <h:form>
-                <h:outputLabel value="Filter: " styleClass="alabel"/>
-                <h:inputText value="#{itemBean.queryFilter}" styleClass="ainput" >
-                    <f:ajax event="keyup" execute="@this" render=":booklist"/>
-                </h:inputText>
-            </h:form>
-
-            <h:dataTable value="#{itemBean.bookList}" id="booklist" var="bk"
+            <hr/>
+            <h:dataTable id="booklist" value="#{controller.bookList}" var="bk"
                          border="1" rowClasses="evenRow, oddRow">
                 <h:column>
                     <f:facet name="header">
@@ -107,6 +98,19 @@
                         <h:outputText value="Tags"/>
                     </f:facet>
                     <h:outputText value="#{bk.tagsAsString}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Purchase"/>
+                    </f:facet>
+                    <h:form>
+                        <h:commandButton actionListener="#{controller.doBuy}"
+                                         disabled="#{controller.forbiddenToBuy}"
+                                         value="#{controller.buyButtonLabel}">
+                            <f:attribute name="isbn" value="#{bk.isbn}"/>
+                        </h:commandButton>
+                    </h:form>
                 </h:column>
             </h:dataTable>
         </ui:define>

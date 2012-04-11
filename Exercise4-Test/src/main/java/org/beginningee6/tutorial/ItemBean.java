@@ -1,13 +1,17 @@
 package org.beginningee6.tutorial;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import javax.ejb.EJB;
+import javax.enterprise.context.ConversationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -15,36 +19,31 @@ import java.util.StringTokenizer;
  *         http://www.antoniogoncalves.org
  *         http://blogs.sun.com/alexismp
  *         --
- *         A JSF Managed Bean
+ *         A CDI (Web)Bean used as a controller by the JSF view
  */
 @ManagedBean
-@RequestScoped
-public class ItemBean {
+public class ItemBean implements Serializable {
 
     // ======================================
     // =             Attributes             =
     // ======================================
+    Customer cust;
 
     @EJB
     private ItemEJB itemEJB;
-
-    @EJB
+    @Inject
     private LanguageSingleton languageSingleton;
-
     private Book book = new Book();
     private List<Book> bookList = new ArrayList<Book>();
     private String tags;
     @Size(min = 2, max = 2, message = "Language code should be exactly {min} characters")
     private String languageCode;
-    private String queryFilter;
-
     private CD cd = new CD();
     private List<CD> cdList = new ArrayList<CD>();
 
     // ======================================
     // =          Lifecycle methods         =
     // ======================================
-
     @PostConstruct
     private void initList() {
         bookList = itemEJB.findAllBooks();
@@ -55,6 +54,21 @@ public class ItemBean {
     // =           Public Methods           =
     // ======================================
 
+    public Boolean getForbiddenToBuy() {
+        return cust.canBuy() ? Boolean.FALSE : Boolean.TRUE;
+    }
+
+    public String getBuyButtonLabel() {
+        return cust.canBuy() ? "Buy me!" : "Sorry, can't buy";
+    }
+
+    public String doBuy(ActionEvent event) {
+        String isbn = (String) event.getComponent().getAttributes().get("isbn");
+        OrderItem orderItem = cust.buy(isbn); // Will only proceed for @Premium customers
+        System.out.println("** Just bought : " + orderItem);
+        return null;    // Stay on the same page
+    }
+    
     public String doNewBookForm() {
         return "newBook.xhtml";
     }
@@ -80,7 +94,6 @@ public class ItemBean {
     // ======================================
     // =           Private methods          =
     // ======================================
-
     private List<String> transformToList(String tagsRequestParameter) {
         List<String> listOfTags = new ArrayList<String>();
         StringTokenizer tokens = new StringTokenizer(tagsRequestParameter, ",");
@@ -93,7 +106,6 @@ public class ItemBean {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
-
     public Book getBook() {
         return book;
     }
@@ -103,11 +115,7 @@ public class ItemBean {
     }
 
     public List<Book> getBookList() {
-        if (queryFilter == null || queryFilter.isEmpty()) {
-            return bookList;
-        } else {
-            return itemEJB.findFilteredBooks(queryFilter);
-        }
+        return bookList;
     }
 
     public void setBookList(List<Book> bookList) {
@@ -145,14 +153,4 @@ public class ItemBean {
     public void setCdList(List<CD> cdList) {
         this.cdList = cdList;
     }
-    
-    public String getQueryFilter() {
-        return queryFilter;
-    }
-
-    public void setQueryFilter(String queryFilter) {
-        this.queryFilter = queryFilter;
-    }
-
-
 }

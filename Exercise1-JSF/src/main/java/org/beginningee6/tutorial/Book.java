@@ -3,6 +3,7 @@ package org.beginningee6.tutorial;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -15,21 +16,15 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC"),
+        @NamedQuery(name = "findFilteredBooks", query = "SELECT b FROM Book b WHERE b.title LIKE :filter ORDER BY b.id DESC"),
         @NamedQuery(name = "findAllScifiBooks", query = "SELECT b FROM Book b WHERE b.tags = 'scifi' ORDER BY b.id DESC")
 })
-public class Book {
+@XmlRootElement // Exo 2
+public class Book extends Item {
 
     // ======================================
     // =             Attributes             =
     // ======================================
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column(nullable = false)
-    private String title;
-    private Float price;
-    @Column(length = 2000)
-    private String description;
     private String isbn;
     private Integer nbOfPage;
     private Boolean illustrations;
@@ -58,33 +53,6 @@ public class Book {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getIsbn() {
         return isbn;
