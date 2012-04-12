@@ -27,8 +27,6 @@ public class ItemBean implements Serializable {
     // ======================================
     // =             Attributes             =
     // ======================================
-    @Inject
-    private transient Logger logger;    
 
     @Inject @Premium
     private Customer cust;
@@ -55,7 +53,7 @@ public class ItemBean implements Serializable {
 
     @PostConstruct
     private void initList() {
-        logger.info("Initialization of book & CD lists");
+        System.out.println("Initialization of book & CD lists");
         bookList = itemEJB.findAllBooks();
         cdList = itemEJB.findAllCDs();
     }
@@ -97,7 +95,7 @@ public class ItemBean implements Serializable {
     public String doBuy(ActionEvent event) {
         String isbn = (String) event.getComponent().getAttributes().get("isbn");
         OrderItem orderItem = cust.buy(isbn); // Will only proceed for @Premium customers
-        logger.info("** Just bought : " + orderItem);
+        System.out.println("** Just bought : " + orderItem);
         return null;    // Stay on the same page
     }
     

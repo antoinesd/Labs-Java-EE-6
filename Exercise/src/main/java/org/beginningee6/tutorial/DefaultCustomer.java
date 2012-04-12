@@ -13,11 +13,9 @@ import javax.inject.Inject;
  */
 public class DefaultCustomer implements Customer {
 
-    @Inject Logger logger;
-    
     @Override
     public OrderItem buy(String id) {
-        logger.info("Not supported yet.");
+        System.out.println("Not supported yet.");
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

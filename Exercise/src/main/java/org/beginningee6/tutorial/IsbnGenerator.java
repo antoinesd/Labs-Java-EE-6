@@ -22,18 +22,16 @@ public class IsbnGenerator {
     // =          Lifecycle methods         =
     // ======================================
 
-    @Inject Logger logger;
-    
     @PostConstruct
     private void init() {
-        logger.info("\n=> IsbnGenerator PostConstruct");
-        logger.info("================");
+        System.out.println("\n=> IsbnGenerator PostConstruct");
+        System.out.println("================");
     }
 
     @PreDestroy
     private void release() {
-        logger.info("=============");
-        logger.info("=> IsbnGenerator PreDestroy");
+        System.out.println("=============");
+        System.out.println("=> IsbnGenerator PreDestroy");
     }
 
     // ======================================

@@ -14,25 +14,15 @@ import org.junit.runner.RunWith;
 /**
  * @author Alexis Hassler - http://www.alexis-hassler.com
  */
-@RunWith(Arquillian.class)
 public class ItemEJBIT {
 
-    @Deployment
     public static JavaArchive deploy() {
-        return ShrinkWrap.create(JavaArchive.class)
-                         .addPackage(ItemEJB.class.getPackage())
-                         .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
-                         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        return ShrinkWrap.create(JavaArchive.class);
     }
     
-    @EJB ItemEJB itemEJB;
-    @EJB DBInit dBInit;
+    ItemEJB itemEJB;
+    DBInit dBInit;
 
-    @Before
-    public void initData() {
-        dBInit.initDatabase();
-    }
-    
     @Test
     public void shouldGetBookSimplyReturnFoundBook() throws Exception {
         Book bookFound = itemEJB.getBook(1L);

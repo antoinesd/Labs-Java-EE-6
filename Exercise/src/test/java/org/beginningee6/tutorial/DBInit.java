@@ -22,11 +22,9 @@ public class DBInit {
     @Resource(mappedName="jdbc/sample")
     DataSource ds;
     
-    @Inject Logger logger;
-    
     @PostConstruct
     public void initDatabase() {
-        logger.info("=> Initializing database");        
+        System.out.println("=> Initializing database");
         Connection connection = null;
         try {
             connection = ds.getConnection();
@@ -48,9 +46,9 @@ public class DBInit {
                     Logger.getLogger(DBInit.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            logger.warning("Database initiaziation failed");
+            System.out.println("Database initiaziation failed");
             for (Throwable ex : e) {
-                logger.warning("=> " + ex);
+                System.out.println("=> " + ex);
             }
         }
     }

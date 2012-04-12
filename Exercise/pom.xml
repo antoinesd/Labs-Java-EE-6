@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.beginningee6.tutorial</groupId>
-    <artifactId>Solution</artifactId>
+    <artifactId>Exercise</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Solution</name>
+    <name>Exercise</name>
 
     <properties>
         <junit-version>4.10</junit-version>
@@ -95,7 +95,7 @@
     </profiles>
 
     <build>
-        <finalName>solution</finalName>
+        <finalName>exercise</finalName>
 
         <plugins>
             <plugin>

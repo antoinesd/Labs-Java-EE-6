@@ -18,30 +18,15 @@ import org.junit.runner.RunWith;
 /**
  * @author Alexis Hassler - http://www.alexis-hassler.com
  */
-@RunWith(Arquillian.class)
 public class ItemBeanIT {
     
-    @Deployment
     public static JavaArchive deploy() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                         .addPackage(ItemEJB.class.getPackage())
-                         .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
-                         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        return ShrinkWrap.create(JavaArchive.class, "test.jar");
     }
 
-    @Inject ItemBean itemBean;
-    @EJB DBInit dBInit;
+    ItemBean itemBean;
+    DBInit dBInit;
     
-    // WELD hack : create a conversation context to support @ConversationScoped beans
-    // Should work on Glassfish 3, JBoss AS 6 & JBoss AS 7
-    @Inject BoundConversationContext conversationContext;    
-    @Before
-    public void init() {
-        conversationContext.associate(new MutableBoundRequest(new HashMap<String, Object>(), new HashMap<String, Object>()));
-        conversationContext.activate();
-    }
-    // End of WELD hack
-     
     @Test
     public void shouldGetForbiddenToBuyReturnFalseWhenCustomerCanBuy() {
         // itemBean has a premium customer

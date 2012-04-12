@@ -25,8 +25,6 @@ public class LanguageSingleton {
     // =             Attributes             =
     // ======================================
 
-    private Logger logger = Logger.getLogger("org.beginningee6.tutorial");
-
     private Map<String, String> languages;
 
     // ======================================
@@ -43,7 +41,7 @@ public class LanguageSingleton {
         languages.put("FI", "Finnish");
         languages.put("IT", "Italian");
         languages.put("RU", "Russian");
-        logger.info("Loaded " + languages.size() + " languages !!!");
+        System.out.println("Loaded " + languages.size() + " languages !!!");
     }
 
     // ======================================

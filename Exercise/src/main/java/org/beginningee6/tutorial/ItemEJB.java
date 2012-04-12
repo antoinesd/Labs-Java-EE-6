@@ -36,9 +36,6 @@ public class ItemEJB {
     @Inject
     private IsbnGenerator isbnGenerator;
 
-    @Inject
-    private Logger logger;    
-
     // ======================================
     // =          Business methods          =
     // ======================================
@@ -52,7 +49,7 @@ public class ItemEJB {
     }
 
     public Book createBook(Book book) {
-        logger.info("Creation : " + book);
+        System.out.println("Creation : " + book);
         book.setIsbn(isbnGenerator.generateIsbn());
         em.persist(book);
         return book;
