@@ -1,1 +1,148 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">    <modelVersion>4.0.0</modelVersion>    <groupId>org.beginningee6.tutorial</groupId>    <artifactId>demos</artifactId>    <version>1.0</version>    <packaging>pom</packaging>    <name>JavaEE 6 HOL (completed)</name>    <description>Root pom.xml for all three exercises in completed form</description>    <modules>        <module>Exercise1-JSF</module>        <module>Exercise2-JAX-RS</module>        <module>Exercise3-CDI</module>        <module>Exercise4-Test</module>    </modules>    <properties>        <junit-version>4.10</junit-version>        <glassfish-version>3.1.2</glassfish-version>        <plugin-war-version>2.1.1</plugin-war-version>        <plugin-compiler-version>2.3.2</plugin-compiler-version>        <web-profile-version>6.0</web-profile-version>        <arquillian-version>1.0.0.Final</arquillian-version>        <arquillian_container_glassfish-version>1.0.0.CR3</arquillian_container_glassfish-version>        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    </properties>    <dependencies>        <dependency>            <groupId>junit</groupId>            <artifactId>junit</artifactId>            <version>${junit-version}</version>            <scope>test</scope>        </dependency>    </dependencies>    <repositories>        <repository>            <id>maven2-repository.dev.java.net</id>            <name>Java.net Repository for Maven 2</name>            <url>http://download.java.net/maven/2</url>            <layout>default</layout>        </repository>        <repository>            <id>glassfish-maven-repository.dev.java.net</id>            <name>GlassFish Maven Repository</name>            <url>http://download.java.net/maven/glassfish</url>        </repository>    </repositories>    <pluginRepositories>        <pluginRepository>            <id>maven2-repository.dev.java.net</id>            <url>http://download.java.net/maven/2</url>        </pluginRepository>    </pluginRepositories>    <build>        <plugins>            <plugin>                <groupId>org.apache.maven.plugins</groupId>                <artifactId>maven-compiler-plugin</artifactId>                <version>${plugin-compiler-version}</version>                <inherited>true</inherited>                <configuration>                    <source>1.6</source>                    <target>1.6</target>                </configuration>            </plugin>        </plugins>    </build></project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.beginningee6.tutorial</groupId>
+    <artifactId>Exercise</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>Exercise</name>
+
+    <properties>
+        <junit-version>4.10</junit-version>
+        <glassfish-version>3.1.2</glassfish-version>
+        <plugin-war-version>2.1.1</plugin-war-version>
+        <plugin-compiler-version>2.3.2</plugin-compiler-version>
+        <web-profile-version>6.0</web-profile-version>
+        <arquillian-version>1.0.0.Final</arquillian-version>
+        <arquillian_container_glassfish-version>1.0.0.CR3</arquillian_container_glassfish-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${web-profile-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${arquillian-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+            <version>${arquillian_container_glassfish-version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-container-spi</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-web</artifactId>
+            <version>${glassfish-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>   
+    
+    <profiles>
+        <profile>
+            <id>arquillian</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <classpathDependencyExcludes>
+                                <!-- exclude code absent api : avoid some ClassFormatError due to crappy javaee jars-->
+                                <classpathDependencyExclude>javax:javaee-api</classpathDependencyExclude>
+                                <classpathDependencyExclude>javax:javaee-web-api</classpathDependencyExclude>
+                            </classpathDependencyExcludes>
+                            <includes>
+                                <include>**/*IT.java</include>                        
+                            </includes>                        
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>exercise</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${plugin-war-version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <classpathDependencyExcludes>
+                        <!-- exclude code absent api : avoid some ClassFormatError due to crappy javaee jars-->
+                        <classpathDependencyExclude>javax:javaee-api</classpathDependencyExclude>
+                        <classpathDependencyExclude>javax:javaee-web-api</classpathDependencyExclude>
+                    </classpathDependencyExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven 2</name>
+            <url>http://download.java.net/maven/2</url>
+            <layout>default</layout>
+        </repository>
+
+        <repository>
+            <id>glassfish-maven-repository.dev.java.net</id>
+            <name>GlassFish Maven Repository</name>
+            <url>http://download.java.net/maven/glassfish</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven2-repository.dev.java.net</id>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

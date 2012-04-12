@@ -6,6 +6,7 @@
 target
 # Netbeans
 nbactions.xml
+nb-configuration.xml
 # IntelliJ
 *.iml
 .idea
