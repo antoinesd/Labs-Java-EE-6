@@ -1,5 +1,6 @@
 package org.beginningee6.tutorial;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -33,7 +34,7 @@ public class ItemEJB {
     @PersistenceContext
     private EntityManager em;
 
-    @Inject
+    @Resource
     private IsbnGenerator isbnGenerator;
 
     // ======================================

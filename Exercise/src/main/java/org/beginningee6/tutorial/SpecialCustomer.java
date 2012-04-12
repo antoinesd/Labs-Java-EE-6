@@ -11,7 +11,6 @@ import javax.inject.Inject;
  *         --
  *         A simple POJO annotation with a CDI Qualifier
  */
-@Premium
 public class SpecialCustomer implements Customer {
 
     @Inject @ImportantOrder Event<OrderItem> order;

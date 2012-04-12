@@ -2,15 +2,16 @@ package org.beginningee6.tutorial;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -20,21 +21,19 @@ import javax.inject.Named;
  *         --
  *         A JSF Managed Bean
  */
-@Named("itemBean")
-@RequestScoped
+@ManagedBean @RequestScoped
 public class ItemBean implements Serializable {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-    @Inject @Premium
     private Customer cust;
     
-    @Inject
+    @EJB
     private ItemEJB itemEJB;
 
-    @Inject
+    @EJB
     private LanguageSingleton languageSingleton;
 
     private Book book = new Book();
@@ -85,11 +84,15 @@ public class ItemBean implements Serializable {
     }
 
     public Boolean getForbiddenToBuy() {
-        return cust.canBuy() ? Boolean.FALSE : Boolean.TRUE;
+        return cust != null && cust.canBuy() ? Boolean.FALSE : Boolean.TRUE;
     }
 
     public String getBuyButtonLabel() {
-        return cust.canBuy() ? "Buy me!" : "Sorry, can't buy";
+        if (cust == null) {
+            return "Not implemented";
+        } else {
+            return cust.canBuy() ? "Buy me!" : "Sorry, can't buy";
+        }
     }
 
     public String doBuy(ActionEvent event) {

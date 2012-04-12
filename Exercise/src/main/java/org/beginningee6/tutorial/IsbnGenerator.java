@@ -16,6 +16,7 @@ import javax.inject.Inject;
  *         --
  *         Simple IsbnGenerator Pojo with Managed Bean annotation
  */
+@ManagedBean
 public class IsbnGenerator {
 
     // ======================================

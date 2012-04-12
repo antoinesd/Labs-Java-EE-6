@@ -16,9 +16,7 @@ import javax.inject.Named;
  *         --
  *         An EJB Singleton that caches a map of languages
  */
-@Startup
-@Singleton
-@Named("languages")
+@Startup @Singleton
 public class LanguageSingleton {
 
     // ======================================
