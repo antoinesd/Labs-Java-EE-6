@@ -39,7 +39,7 @@ public class ItemBean implements Serializable {
     private Book book = new Book();
     private List<Book> bookList = new ArrayList<Book>();
     private String tags;
-    @Size(min = 2, max = 2, message = "Language code should be exactly {min} characters")
+    //@Size(min = 2, max = 2, message = "Language code should be exactly {min} characters")
     private String languageCode;
     private String queryFilter;
 

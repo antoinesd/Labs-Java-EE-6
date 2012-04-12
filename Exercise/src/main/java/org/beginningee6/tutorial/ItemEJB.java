@@ -24,7 +24,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Stateless
 @Interceptors(LoggingInterceptor.class)
-@Path("/items")
 public class ItemEJB {
 
     // ======================================
@@ -41,10 +40,7 @@ public class ItemEJB {
     // =          Business methods          =
     // ======================================
 
-    @GET // Exo 2
-    @Path("{bookKey}") // Exo 2
-    @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON}) // Exo 2
-    public Book getBook(@PathParam("bookKey") Long bookKey) { // Exo 2 : @PathParam("bookKey")
+    public Book getBook(Long bookKey) {
         Book theBook = em.find(Book.class, bookKey);
         return theBook;
     }

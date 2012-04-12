@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "findFilteredBooks", query = "SELECT b FROM Book b WHERE b.title LIKE :filter ORDER BY b.id DESC"),
         @NamedQuery(name = "findAllScifiBooks", query = "SELECT b FROM Book b JOIN b.tags t WHERE t = 'scifi' ORDER BY b.id DESC")
 })
-@XmlRootElement // Exo 2
 public class Book extends Item {
 
     // ======================================
