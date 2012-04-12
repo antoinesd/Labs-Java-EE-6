@@ -1,5 +1,8 @@
 package org.beginningee6.tutorial;
 
+import java.util.logging.Logger;
+import javax.inject.Inject;
+
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
  *         Tutorial - Beginning with The Java EE 6 Platform
@@ -10,9 +13,11 @@ package org.beginningee6.tutorial;
  */
 public class DefaultCustomer implements Customer {
 
+    @Inject Logger logger;
+    
     @Override
     public OrderItem buy(String id) {
-        System.out.println("Not supported yet.");
+        logger.info("Not supported yet.");
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

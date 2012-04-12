@@ -29,7 +29,64 @@
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${arquillian-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+            <version>${arquillian_container_glassfish-version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-container-spi</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-web</artifactId>
+            <version>${glassfish-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>   
+    
+    <profiles>
+        <profile>
+            <id>arquillian</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <classpathDependencyExcludes>
+                                <!-- exclude code absent api : avoid some ClassFormatError due to crappy javaee jars-->
+                                <classpathDependencyExclude>javax:javaee-api</classpathDependencyExclude>
+                                <classpathDependencyExclude>javax:javaee-web-api</classpathDependencyExclude>
+                            </classpathDependencyExcludes>
+                            <includes>
+                                <include>**/*IT.java</include>                        
+                            </includes>                        
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <finalName>exercise</finalName>
@@ -40,6 +97,17 @@
                 <version>${plugin-war-version}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <classpathDependencyExcludes>
+                        <!-- exclude code absent api : avoid some ClassFormatError due to crappy javaee jars-->
+                        <classpathDependencyExclude>javax:javaee-api</classpathDependencyExclude>
+                        <classpathDependencyExclude>javax:javaee-web-api</classpathDependencyExclude>
+                    </classpathDependencyExcludes>
                 </configuration>
             </plugin>
         </plugins>

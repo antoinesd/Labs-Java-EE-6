@@ -5,6 +5,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.interceptor.Interceptors;
 import java.util.Random;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine
@@ -14,23 +16,24 @@ import java.util.Random;
  *         --
  *         Simple IsbnGenerator Pojo with Managed Bean annotation
  */
-@ManagedBean
 public class IsbnGenerator {
 
     // ======================================
     // =          Lifecycle methods         =
     // ======================================
 
+    @Inject Logger logger;
+    
     @PostConstruct
     private void init() {
-        System.out.println("\n=> IsbnGenerator PostConstruct");
-        System.out.println("================");
+        logger.info("\n=> IsbnGenerator PostConstruct");
+        logger.info("================");
     }
 
     @PreDestroy
     private void release() {
-        System.out.println("=============");
-        System.out.println("=> IsbnGenerator PreDestroy");
+        logger.info("=============");
+        logger.info("=> IsbnGenerator PreDestroy");
     }
 
     // ======================================

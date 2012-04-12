@@ -1,20 +1,17 @@
 package org.beginningee6.tutorial;
 
 import java.util.logging.Logger;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 /**
- *
- * @author Alexis Hassler
+ * @author Alexis Hassler - http://www.alexis-hassler.com
  */
 public class LoggerProducer {
     
     @Produces
     public Logger getLogger(InjectionPoint injectionPoint) {
-        return Logger.getLogger("AAA"); //injectionPoint.getBean().getBeanClass().getName());
+        return Logger.getLogger(injectionPoint.getBean().getBeanClass().getName());
     }
     
 }

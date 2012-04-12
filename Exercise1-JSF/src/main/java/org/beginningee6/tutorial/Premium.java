@@ -12,6 +12,6 @@ import javax.inject.Qualifier;
  *         A CDI Qualifier annotation
  */
 @Qualifier
-@Target({ElementType.FIELD,ElementType.TYPE,ElementType.METHOD})
+@Target({ElementType.METHOD,ElementType.FIELD,ElementType.PARAMETER,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Premium {}

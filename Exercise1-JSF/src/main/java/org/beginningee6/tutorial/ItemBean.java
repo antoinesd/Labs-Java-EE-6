@@ -86,7 +86,7 @@ public class ItemBean implements Serializable {
         return "newCD.xhtml";
     }
 
-        public Boolean getForbiddenToBuy() {
+    public Boolean getForbiddenToBuy() {
         return cust.canBuy() ? Boolean.FALSE : Boolean.TRUE;
     }
 
@@ -97,7 +97,7 @@ public class ItemBean implements Serializable {
     public String doBuy(ActionEvent event) {
         String isbn = (String) event.getComponent().getAttributes().get("isbn");
         OrderItem orderItem = cust.buy(isbn); // Will only proceed for @Premium customers
-        System.out.println("** Just bought : " + orderItem);
+        logger.info("** Just bought : " + orderItem);
         return null;    // Stay on the same page
     }
     
