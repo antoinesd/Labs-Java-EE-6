@@ -1,12 +1,12 @@
 package org.beginningee6.tutorial;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.interceptor.Interceptors;
 import java.util.Random;
 import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine

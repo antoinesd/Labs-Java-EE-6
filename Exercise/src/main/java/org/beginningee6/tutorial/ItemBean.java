@@ -1,17 +1,15 @@
 package org.beginningee6.tutorial;
 
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine

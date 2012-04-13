@@ -1,12 +1,11 @@
 package org.beginningee6.tutorial;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
-import javax.inject.Named;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine

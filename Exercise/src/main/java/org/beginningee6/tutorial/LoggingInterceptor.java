@@ -1,8 +1,9 @@
 package org.beginningee6.tutorial;
 
+import java.util.logging.Logger;
+
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
-import java.util.logging.Logger;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine

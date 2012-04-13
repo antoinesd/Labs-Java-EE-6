@@ -1,16 +1,17 @@
 package org.beginningee6.tutorial;
 
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.Size;
 
 /**
  * @author Antonio Goncalves & Alexis Moussine-Pouchkine

@@ -1,10 +1,13 @@
 package org.beginningee6.tutorial;
 
-import java.util.Arrays;
-import java.util.List;
-import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

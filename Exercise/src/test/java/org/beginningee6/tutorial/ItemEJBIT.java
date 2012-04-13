@@ -1,15 +1,12 @@
 package org.beginningee6.tutorial;
 
-import java.util.List;
-import javax.ejb.EJB;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.*;
 import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
+
+import java.util.List;
+
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
 
 /**
  * @author Alexis Hassler - http://www.alexis-hassler.com

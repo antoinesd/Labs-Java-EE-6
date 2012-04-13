@@ -1,15 +1,19 @@
 package org.beginningee6.tutorial;
 
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.junit.*;
-import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 
 /**

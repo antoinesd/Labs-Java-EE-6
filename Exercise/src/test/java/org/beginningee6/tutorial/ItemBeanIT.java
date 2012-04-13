@@ -1,19 +1,12 @@
 package org.beginningee6.tutorial;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import javax.ejb.EJB;
-import javax.inject.Inject;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.weld.context.bound.BoundConversationContext;
-import org.jboss.weld.context.bound.MutableBoundRequest;
-import org.junit.*;
 import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
+
+import java.util.Arrays;
+
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
 
 /**
  * @author Alexis Hassler - http://www.alexis-hassler.com
