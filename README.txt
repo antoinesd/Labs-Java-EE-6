@@ -21,6 +21,6 @@ En résumé, voici ce dont vous pouvez avoir besoin :
 - Maven : http://maven.apache.org/download.html
 - Netbeans 7.1 (édition JavaEE) : http://netbeans.org/downloads/
 - Eclipse Indigo (3.7) SR2 : http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/indigosr2
-- JBoss Tools : http://www.jboss.org/tools/download/installation/update_3_3.html#fromzip
+- JBoss Tools : http://www.jboss.org/tools/download/installation/update_3_3.html
 - Glassfish 3.1 : http://glassfish.java.net/downloads/3.1.2-final.html (attention, il est déjà inclus dans Netbeans)
 - JBoss AS 7.1 : http://www.jboss.org/jbossas/downloads/
