@@ -24,3 +24,4 @@ En résumé, voici ce dont vous pouvez avoir besoin :
 - JBoss Tools : http://www.jboss.org/tools/download/installation/update_3_3.html
 - Glassfish 3.1 : http://glassfish.java.net/downloads/3.1.2-final.html (attention, il est déjà inclus dans Netbeans)
 - JBoss AS 7.1 : http://www.jboss.org/jbossas/downloads/
+- cURL : http://curl.haxx.se/download.html
